@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% block body_block %}
+<h1>Your Cart</h1>
+
+    {% if cart_items %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.book.Book_Title }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.book_price }}</td>
+                        <td>${{ item.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>Total: ${{ cart_total }}</p>
+
+        <a href="{% url 'place_order' %}" class="btn btn-primary">Place Order</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+{% endblock %}

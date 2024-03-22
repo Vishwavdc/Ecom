@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+
+{% block body_block %}
+    <h1>Search Results</h1>
+    <p>You searched for: "{{ query }}"</p>
+
+    {% if results %}
+        <ul>
+            {% for book in results %}
+                <li>
+                  <img src="{{ book.Image_URL_M }}" alt="{{ book.Book_Title }}"></a>
+                  <h4><a href="{% url 'book_detail' book.ISBN %}">{{ book.Book_Title }}</a></h4>
+                <p>{{ book.Book_Author }} , {{ book.Year_Of_Publication }}</p>
+                <button type="button" class="btn btn-warning"><a href="#">Buy Now</a></button>
+                <button type="button" class="btn btn-warning"><a href="#">Add to Crt</a></button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}
